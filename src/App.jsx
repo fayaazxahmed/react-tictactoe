@@ -1,21 +1,28 @@
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{backgroundColor: "#06132b", minHeight: "100vh", paddingTop: "2rem"}}>
+      <table className='center'>
+        <thead>
+        <tr>
+            <td id="R1C1"></td>
+            <td id="R1C2"></td>
+            <td id="R1C3"></td>
+        </tr>
+        <tr>
+            <td id="R2C1"></td>
+            <td id="R2C2"></td>
+            <td id="R2C3"></td>
+        </tr>
+        <tr>
+            <td id="R3C1"></td>
+            <td id="R3C2"></td>
+            <td id="R3C3"></td>
+        </tr>
+        </thead>
+      </table>
     </div>
   );
 }
