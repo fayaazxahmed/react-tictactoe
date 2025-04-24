@@ -9,25 +9,25 @@ function App() {
   const [winner, setWinner] = useState("");
   const [checkTie, setCheckTie] = useState(false);
   
-  const checkWin = (board, turn) => {
+  const checkWin = (board) => {
     let i = 0;
     for (i = 0; i < 3; i++) {
       if (((board[i][0] === board[i][1]) && (board[i][0]=== board[i][2]) && (board[i][0] !== "")) || 
-      ((board[0][i] === board[1][i]) && (board[0][i]=== board[2][i]) && (board[0][i] !== "")) ||
-      ((board[0][0] === board[1][1]) && (board[1][1]=== board[2][2]) && (board[0][0] !== "")) ||
-      ((board[2][0] === board[1][1]) && (board[1][1]=== board[0][2]) && (board[2][0] !== ""))) {
-        setgameOver(gameOver => true);
-        setWinner(winner => "");
+      ((board[0][i] === board[1][i]) && (board[0][i]=== board[2][i]) && (board[0][i] !== ""))) {
         return true;
       }
     }
+
+    if (((board[0][0] === board[1][1]) && (board[1][1]=== board[2][2]) && (board[0][0] !== "")) ||
+    ((board[2][0] === board[1][1]) && (board[1][1]=== board[0][2]) && (board[2][0] !== ""))) {
+        return true;
+    }
+
+    return false;
   }
 
   const handleClick = (row, col) => {
-    if (board[row][col] !== "" || checkWin(board, turn) === true) {
-      if (checkWin(board, turn)) console.log((turn === "X" ? "O" : "X"), " wins");
-      return; // Skip filled cells
-    }
+    if (board[row][col] !== "" || gameOver) return; // Skip filled cells
 
     const newBoard = board.map((r, rowIndex) =>
       r.map((cell, colIndex) => {
@@ -35,11 +35,16 @@ function App() {
         return cell;
       })
     );
+
+    if (checkWin(newBoard)) {
+      setgameOver(true);
+      setWinner(turn);
+      console.log(turn, " wins");
+    }
     
     setCountMoves(countMoves => countMoves + 1);
     setBoard(newBoard);
     setTurn(turn === "X" ? "O" : "X");
-    console.log(countMoves);
   }
 
   return (
@@ -55,7 +60,7 @@ function App() {
         ))}
         </tbody>
       </table>
-      <div>Current Turn: <span>{turn}</span></div>
+      <div style={{paddingTop: "2rem"}}>Current Turn: <span>{turn}</span></div>
       <div></div>
     </div>
   );
