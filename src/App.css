@@ -7,8 +7,9 @@ td {
   height: 100px;
   user-select: none;
   text-align: center;
-  font-size: x-large;
-  font: bold;
+  font-size: xx-large;
+  font-weight: 900;
+  color: rgb(234, 0, 255);
   font-family: fantasy, papyrus;
   transition-duration: 0.5s;
 }
