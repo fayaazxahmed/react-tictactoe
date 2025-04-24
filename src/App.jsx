@@ -7,7 +7,6 @@ function App() {
   const [countMoves, setCountMoves] = useState(0);
   const [gameOver, setgameOver] = useState(false);
   const [winner, setWinner] = useState("");
-  const [checkTie, setCheckTie] = useState(false);
   
   const checkWin = (board) => {
     let i = 0;
@@ -40,6 +39,9 @@ function App() {
       setgameOver(true);
       setWinner(turn);
       console.log(turn, " wins");
+    } else if (countMoves === 8) {
+      setgameOver(true);
+      console.log("tie");
     }
     
     setCountMoves(countMoves => countMoves + 1);
